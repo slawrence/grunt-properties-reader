@@ -32,16 +32,20 @@ grunt.initConfig({
 
 ### Options
 
-Options are passed directly into the second argument of the `grunt.file.read` operation.
+Options are passed directly into the second argument of the `grunt.file.read` operation. See [grunt.file](https://github.com/gruntjs/grunt/wiki/grunt.file)
 
 ### Usage Examples
 
 #### Basic
-In this example, a properties file is used to configure it's deploy location. A property is then used in another task (in this case to delete the deploy directory).
+In this example, a properties file is used to read a server deployment location. The `deployDir` property is then used in a clean task.
+
+The example `application.properties` file:
 
 ```properties
 deployDir=C:\server\deployment
 ```
+
+And example `Gruntfile.js`:
 
 ```js
 grunt.initConfig({
@@ -49,10 +53,17 @@ grunt.initConfig({
     app: 'application.properties'
   },
   clean: {
-    deployDir: '<%= app.deployDir>'
+    deployDir: '<%= app.deployDir %>'
   }
 })
+
+grunt.loadNpmTasks('grunt-contrib-clean');
+grunt.loadNpmTasks('grunt-properties-reader');
+
+grunt.registerTask('cleanDeploy', ['properties', 'clean:deployDir'])
 ```
+
+Running `grunt cleanDeploy` from the command line will delete the directory.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
