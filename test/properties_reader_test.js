@@ -33,7 +33,8 @@ exports.properties_reader = {
       number: "1234",
       string: "hello world",
       "i.have.dots": "a.b.c",
-      spaces: "are fine"
+      spaces: "are fine",
+      eqsign: "<script src='bla.js'></script>"
     };
 
     test.deepEqual(grunt.config.get("defaultTemplateTest"), { test: true, string: "hello world"});
