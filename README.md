@@ -65,6 +65,44 @@ grunt.registerTask('cleanDeploy', ['properties', 'clean:deployDir'])
 
 Running `grunt cleanDeploy` from the command line will delete the directory.
 
+#### Multiple Files
+In this example, multiple properties files are read in the order specified.  Values from subsequent files are merged with those from the proceeding.  Therefore, values from proceeding files will overwrite those from the preceeding files.  Consider the following properties files:
+
+```default.properties
+deployDir=C:\server\deployment
+```
+```overrides.properties
+deployDir=/opt/server
+debug=true
+```
+
+```js
+grunt.initConfig({
+  properties: {
+    app: [ 'default.properties', 'overrides.properties' ]
+  },
+  clean: {
+    deployDir: '<%= app.deployDir %>'
+  }
+})
+
+grunt.loadNpmTasks('grunt-contrib-clean');
+grunt.loadNpmTasks('grunt-properties-reader');
+
+grunt.registerTask('cleanDeploy', ['properties', 'clean:deployDir'])
+```
+
+When executed, the app variable will contain the following values:
+
+```js
+{
+  deployDir=/opt/server
+  debug=true
+}
+```
+
+Finally, when using multiple files, the first file in the list must be present.  All subsequent files are optional, and will not cause the task to fail if they are not present.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
