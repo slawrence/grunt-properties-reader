@@ -22,7 +22,7 @@ var grunt = require('grunt');
     test.ifError(value)
 */
 
-exports.properties_reader = {
+exports.single_file_properties_reader = {
   setUp: function(done) {
     done();
   },
@@ -38,7 +38,7 @@ exports.properties_reader = {
     };
 
     test.deepEqual(grunt.config.get("defaultTemplateTest"), { test: true, string: "hello world"});
-    test.deepEqual(grunt.config.get("default"), expected);
+    test.deepEqual(grunt.config.get("single_file"), expected);
 
     test.done();
   },
@@ -50,3 +50,54 @@ exports.properties_reader = {
     test.done();
   },
 };
+
+exports.multi_file_properties_reader = {
+  setUp: function(done) {
+    done();
+  },
+  default_options: function(test) {
+    test.expect(1);
+    var expected = {
+      test: true,
+      number: "1234",
+      string: "hello world 2",
+      "i.have.dots": "a.b.c",
+      spaces: "are fine",
+      eqsign: "<script src='bla.js'></script>",
+      override: "foobar"
+    };
+
+    test.deepEqual(grunt.config.get("multi_file"), expected);
+
+    test.done();
+  },
+  custom_options: function(test) {
+    test.done();
+  },
+};
+
+exports.optional_file_properties_reader = {
+  setUp: function(done) {
+    done();
+  },
+  default_options: function(test) {
+    test.expect(1);
+    var expected = {
+      test: true,
+      number: "1234",
+      string: "hello world",
+      "i.have.dots": "a.b.c",
+      spaces: "are fine",
+      eqsign: "<script src='bla.js'></script>"
+    };
+
+    test.deepEqual(grunt.config.get("optional_file"), expected);
+
+    test.done();
+  },
+  custom_options: function(test) {
+    test.done();
+  },
+};
+
+

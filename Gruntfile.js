@@ -30,11 +30,13 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     properties: {
-      default: 'test/files/default.properties'
+      single_file: 'test/files/default.properties',
+      multi_file: [ 'test/files/default.properties', 'test/files/overrides.properties' ],
+      optional_file: [ 'test/files/default.properties', 'test/files/not_found.properties' ]
     },
     defaultTemplateTest: {
-      test: '<%= default.test %>',
-      string: '<%= default.string %>'
+      test: '<%= single_file.test %>',
+      string: '<%= single_file.string %>'
     },
     // Unit tests.
     nodeunit: {
