@@ -35,8 +35,8 @@ function convertPropsToJson(text) {
             line = line.trim();
             if (line && line.indexOf("#") !== 0 && line.indexOf("!") !== 0) {
                 props = line.split(/\=(.+)?/);
-                name = props[0].trim();
-                val = props[1].trim();
+                name = props[0] && props[0].trim();
+                val = props[1] && props[1].trim();
                 configObject[name] = _convertStringIfTrue(val);
             }
         });
