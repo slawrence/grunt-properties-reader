@@ -28,6 +28,8 @@ function _convertStringIfTrue(original) {
 function convertPropsToJson(text) {
     var configObject = {};
     if (text && text.length) {
+        // handle multi-line values terminated with a backslash
+        text = text.replace(/\\\r?\n\s*/g, '');
         text.split(/\r?\n/g).forEach(function (line) {
             var props,
                 name,

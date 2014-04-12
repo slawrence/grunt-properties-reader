@@ -35,7 +35,9 @@ exports.single_file_properties_reader = {
       "i.have.dots": "a.b.c",
       spaces: "are fine",
       eqsign: "<script src='bla.js'></script>",
-      empty: undefined
+      empty: undefined,
+      multilineval: 'line1, line2',
+      multilineval2: 'first second third'
     };
 
     test.deepEqual(grunt.config.get("defaultTemplateTest"), { test: true, string: "hello world"});
@@ -66,7 +68,9 @@ exports.multi_file_properties_reader = {
       spaces: "are fine",
       eqsign: "<script src='bla.js'></script>",
       override: "foobar",
-      empty: undefined
+      empty: undefined,
+      multilineval: 'line1, line2',
+      multilineval2: 'first second third'
     };
 
     test.deepEqual(grunt.config.get("multi_file"), expected);
@@ -91,7 +95,9 @@ exports.optional_file_properties_reader = {
       "i.have.dots": "a.b.c",
       spaces: "are fine",
       eqsign: "<script src='bla.js'></script>",
-      empty: undefined
+      empty: undefined,
+      multilineval: 'line1, line2',
+      multilineval2: 'first second third'
     };
 
     test.deepEqual(grunt.config.get("optional_file"), expected);
