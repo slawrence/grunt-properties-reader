@@ -110,3 +110,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 * 2013-06-07 v0.1.0 Initial release
 * 2013-07-30 v0.1.1 Non greedy equals (thanks @nuarhu)
 * 2014-03-11 v0.1.2 Multiple properties file support (thanks @jburwell)
+* 2014-04-13 v0.1.3 Bug fix & multi-line support (thanks @hemdada & @bostaunieux)
